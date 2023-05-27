@@ -1,0 +1,63 @@
+$light-background: #fff;
+$primary-color: #4793ff;
+$box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, .25);
+$border-radius: 20px;
+
+$light-color: #4f4f4f;
+$dark-color: #fff;
+$base-color: #939cd0;
+
+$body-background-dark: #0d1117;
+$body-background-light: #fff;
+
+$components-background-dark: #4f4f4f;
+$components-background-light: #fff;
+
+$card-background-light: rgba(71, 147, 255, 0.2);
+$card-background-dark: #2e3035;
+
+$card-box-shadow-light: 0px 3px 20px rgba(147, 144, 144, 0.28);
+$card-box-shadow-dark: 0px 3px 20px rgba(5, 5, 5, 0.28);
+
+$switch-light: linear-gradient(to right, #87CEEB, rgb(76, 165, 238));
+$switch-dark: linear-gradient(to right, rgb(138, 4, 138), rgb(211, 9, 211));
+
+$span-light: #ffcc33;
+$span-dark: url(../assets/images/moon.svg);
+
+$input-light: #fff;
+$input-dark: #4f4f4f;
+
+:root {
+  --body-background-dark: #{$body-background-dark};
+  --body-background-light: #{$body-background-light};
+  --body-background-default: var(#{--body-background-light});
+
+  --components-background-dark: #{$components-background-dark};
+  --components-background-light: #{$components-background-light};
+  --components-background-default: var(#{--components-background-light});
+
+  --card-background-dark: #{$card-background-dark};
+  --card-background-light: #{$card-background-light};
+  --card-background-default: var(#{--card-background-light});
+ 
+  --card-shadow-dark: #{$card-box-shadow-dark};
+  --card-shadow-light: #{$card-box-shadow-light};
+  --card-shadow-default: var(#{--card-shadow-light});
+  
+  --text-color-dark: #{$dark-color};
+  --text-color-light: #{$light-color};
+  --text-color-default: var(#{--text-color-light});
+
+  --switch-background-dark: #{$switch-dark};
+  --switch-background-light: #{$switch-light};
+  --switch-background-default: var(#{--switch-background-light});
+
+  --span-background-dark: #{$span-dark};
+  --span-background-light: #{$span-light};
+  --span-background-default: var(#{--span-background-light});
+
+  --input-background-dark: #{$input-dark};
+  --input-background-light: #{$input-light};
+  --input-background-default: var(#{--input-background-light});
+}

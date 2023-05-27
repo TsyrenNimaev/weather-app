@@ -1,0 +1,24 @@
+.loading {
+  width: 80px;
+  height: 80px;
+  transition: .3s ease;
+  animation: sunAnimation 3s ease infinite;
+
+  &:hover {
+    transform: scale(.8) rotate(180deg);
+  }
+
+  @keyframes sunAnimation {
+    0% {
+      transform: scale(1) rotate(0);
+    }
+
+    50% {
+      transform: scale(.8) rotate(180deg);
+    }
+
+    100% {
+      transform: scale(1) rotate(0);
+    }
+  }
+}

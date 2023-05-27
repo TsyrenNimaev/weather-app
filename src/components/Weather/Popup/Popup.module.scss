@@ -1,0 +1,74 @@
+@import '../../../styles/variables.scss';
+
+.popup {
+  position: absolute;
+  // top: 50%;
+  top: calc(50% - 154px);
+  left: calc(50% - 325px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 750px;
+  width: 100%;
+  padding: 40px;
+  border-radius: $border-radius;
+  background: $light-background;
+  box-shadow: $box-shadow;
+  z-index: 1000;
+}
+
+.blur {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .25);
+  z-index: 200;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  
+  svg {
+    transition: .2s;
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.day {
+  .day__temp {
+    font-size: 60px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: $primary-color;
+  }
+  
+  .day__name {
+    font-size: 25px;
+    line-height: 30px;
+    margin-bottom: 12px;
+    color: #000;
+  }
+  
+  .day__icon {
+    margin-bottom: 12px;
+    svg {
+      width: 53px;
+      height: 53px;
+    }
+  }
+
+  .day__time,
+  .day__city {
+    font-size: 15px;
+    color: $base-color;
+  }
+
+}

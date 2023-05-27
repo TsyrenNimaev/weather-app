@@ -1,0 +1,161 @@
+@import '../../../styles/variables.scss';
+
+.this__day_info {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 40px;
+  border-radius: $border-radius;
+  background: var(#{--components-background-default});
+  box-shadow: $box-shadow;
+
+  .city__info_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px 40px;
+    border-radius: $border-radius;
+    background: var(#{--components-background-default});
+    box-shadow: 1px 4px 10px -1px rgba(71, 147, 255, .2);
+    // z-index: 2;
+
+    .city__info {
+      color: $base-color;
+      
+      div {
+        font-size: 19px;
+        font-weight: 600;
+        display: block;
+  
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+  
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+
+    .icon__info {
+
+      svg {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 20px;
+      }
+
+      span {
+        display: block;
+        font-size: 20px;
+        color: $base-color;
+      }
+    }
+  }
+
+  .this__day_items {
+    margin-bottom: 30px;
+  }
+
+  .this__day_img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .suntime {
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    width: 39%;
+
+    .progressbar__wrapper {
+      height: 250px;
+      transform: scaleX(-1);
+      overflow: hidden;
+    }
+
+    .suntime__icon {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 50%;
+        background-color: #fff;
+        color: $base-color;
+        transform: translate(-15px, -10px);
+
+        &:not(:first-child) {
+          transform: translate(28px, -10px);
+        }
+        svg {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+    }
+  }
+}
+
+
+.list {
+  position: relative;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-bottom: 20px;
+  z-index: 1;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+  .indicator {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 1px 4px 10px -1px rgba(71, 147, 255, .2);
+    z-index: 1;
+  }
+  
+  .indicator__name,
+  .indicator__value {
+    position: relative;
+    left: -8px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 7px 25px;
+    background-color: #fff;
+    box-shadow: 1px 4px 10px -1px rgba(71, 147, 255, .2);
+    color: $base-color;
+    z-index: 0;
+  }
+  
+  .indicator__value {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+}
+
+.info__background {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  // top: 0;
+  // left: 0;
+  z-index: 0;
+}

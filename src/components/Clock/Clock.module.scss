@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.clock {
+  position: relative;
+  max-width: 750px;
+  width: 100%;
+  padding: 40px;
+  border-radius: $border-radius;
+  background: var(#{--components-background-default});
+  box-shadow: $box-shadow;
+}

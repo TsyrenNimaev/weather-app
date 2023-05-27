@@ -1,0 +1,99 @@
+@import '../../../styles/variables.scss';
+
+.this__day {
+  max-width: 400px;
+  width: 100%;
+  min-height: 341px;
+  padding: 20px;
+  background-color: var(#{--components-background-default});
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+}
+
+.top__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+
+  svg {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 25px;
+  }
+
+  .icon__wrapper {
+    span {
+      font-size: 20px;
+      color: $base-color;
+    }
+  }
+
+  .this__temp {
+    font-size: 70px;
+    font-weight: 500;
+    color: $primary-color;
+    margin-bottom: 15px;
+
+    span {
+      display: block;
+
+      &:not(:first-child) {
+        font-size: 30px;
+      }
+    }
+
+  }
+
+  .this__day_name {
+    font-size: 36px;
+    color: var(#{--text-color-default});
+
+    .local__time {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .icon__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.bottom__block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .this__time,
+  .this__city {
+    font-size: 25px;
+    color: $base-color;
+  }
+}
+
+.details__link {
+  padding: 5px 15px;
+  border: 1px solid $base-color;
+  border-radius: 10px;
+  text-decoration: none;
+  color: $base-color;
+  transition: .3s ease;
+
+  &:hover {
+    background-color: $base-color;
+    color: #fff;
+  }
+}
+
+.empty__container {
+  width: 100%;
+  height: calc(80% - 65px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

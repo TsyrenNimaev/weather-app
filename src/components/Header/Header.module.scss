@@ -1,0 +1,85 @@
+@import '../../styles/variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo,
+.change_theme {
+  display: flex;
+  text-decoration: none;
+  // margin-right: 20px;
+  cursor: pointer;
+}
+
+.title {
+  // margin-right: 20px;
+  color: $primary-color;
+  transform: translateX(-50px);
+
+}
+
+.change_theme {
+  position: relative;
+  width: 40px;
+  height: 25px;
+  border: 1px solid $base-color;
+  border-radius: 15px;
+  background: var(#{--switch-background-default});
+
+  .sun {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 23px;
+    border: 1px solid $base-color;
+    border-radius: 50%;
+    background: var(#{--span-background-default});
+    transition: .3s ease;
+    transform: translateX(0);
+  }
+  
+  .moon {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 23px;
+    height: 23px;
+    border: 1px solid $base-color;
+    border-radius: 50%;
+    background: var(#{--span-background-default});
+    transition: .3s ease;
+    transform: translateX(15px);
+  }
+}
+
+.headerlogo__wrapper {
+  display: flex;
+  align-items: center;
+  // width: 90%;
+
+  .weather__icon {
+    width: 24%;
+    overflow: hidden;
+  }
+
+  .clock__icon {
+    width: 30%;
+    overflow: hidden;
+    svg {
+      transform: translateX(-37px);
+
+    }
+  }
+}
