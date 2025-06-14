@@ -1,5 +1,5 @@
-import { useLazyGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
-import React, { useState } from 'react';
+import { useGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
+import React, { useEffect, useState } from 'react';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { SerializedError } from '@reduxjs/toolkit';
 
@@ -9,19 +9,40 @@ interface OpenCageError {
   };
 }
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onCitySelect: (lat: number, lon: number, name: string) => void;
+}
+
+const SearchBar = ({ onCitySelect }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  //пока не использую данные, просто запускаю запрос при сабмите
-  const [refetch, { isFetching, error }] =
-    useLazyGetCoordinatesByCityNameQuery();
+  const { data, refetch, isFetching, error } = useGetCoordinatesByCityNameQuery(
+    searchTerm,
+    { skip: true }
+  );
+
+  // const [refetch, { isFetching, error }] =
+  //   useLazyGetCoordinatesByCityNameQuery();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      refetch(searchTerm); //запускаем запрос в ручную
+      refetch();
     }
   };
+
+  //Обработка успешного ответа геокодинга
+  useEffect(() => {
+    if (data && data.results.length > 0) {
+      const firstResult = data.results[0];
+      const { lat, lng: lon } = firstResult.geometry;
+      const cityName =
+        firstResult.components.city ||
+        firstResult.components.towm ||
+        searchTerm;
+      onCitySelect(lat, lon, cityName);
+    }
+  }, [data, searchTerm, onCitySelect]);
 
   const getErrorMessage = (error: FetchBaseQueryError | SerializedError) => {
     if ('data' in error) {
@@ -50,7 +71,9 @@ const SearchBar = () => {
       <button type='submit' disabled={isFetching}>
         {isFetching ? 'Searching...' : 'Search'}
       </button>
+      {isFetching && <div>Loading cities...</div>}
       {error && <div>Error: {getErrorMessage(error)}</div>}
+      {/*Позже добавить вывод списка data.results для выбора */}
     </form>
   );
 };

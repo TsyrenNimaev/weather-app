@@ -40,7 +40,7 @@ export interface CurrentWeather {
 }
 
 export interface GeocodingResult {
-  rerults: [
+  results: [
     {
       geometry: {
         lat: number;
