@@ -1,11 +1,13 @@
+import { geocodingApi } from '@/api/geocodingApi';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
   reducer: {
-    /*redusers */
+    [geocodingApi.reducerPath]: geocodingApi.reducer,
   },
 
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(geocodingApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
