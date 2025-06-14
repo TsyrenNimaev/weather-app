@@ -28,4 +28,7 @@ export const geocodingApi = createApi({
   }),
 });
 
-export const { useGetCoordinatesByCityNameQuery } = geocodingApi;
+export const {
+  useGetCoordinatesByCityNameQuery,
+  useLazyGetCoordinatesByCityNameQuery,
+} = geocodingApi;

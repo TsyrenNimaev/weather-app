@@ -1,4 +1,4 @@
-import { useGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
+import { useLazyGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
 import React, { useState } from 'react';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { SerializedError } from '@reduxjs/toolkit';
@@ -13,17 +13,13 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   //пока не использую данные, просто запускаю запрос при сабмите
-  const { refetch, isFetching, error } = useGetCoordinatesByCityNameQuery(
-    searchTerm,
-    {
-      skip: true /*запрос не запускается автоматически*/,
-    }
-  );
+  const [refetch, { isFetching, error }] =
+    useLazyGetCoordinatesByCityNameQuery();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      refetch(); //запускаем запрос в ручеую
+      refetch(searchTerm); //запускаем запрос в ручную
     }
   };
 
