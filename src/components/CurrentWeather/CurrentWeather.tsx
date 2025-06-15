@@ -1,18 +1,21 @@
 import { useGetCurrentWeatherQuery } from '@/api/weatherApi';
 
-const TEST_LAN = 50.5074;
-const TEST_LON = -0.1278;
+interface CurrentWeatherProps {
+  lat: number;
+  lon: number;
+  cityName: string;
+}
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ lat, lon, cityName }: CurrentWeatherProps) => {
   //тест запроса
   const { data, isLoading, isError, error } = useGetCurrentWeatherQuery({
-    lat: TEST_LAN,
-    lon: TEST_LON,
+    lat,
+    lon,
   });
 
-  if (isLoading) return <div>Loading weather...</div>;
+  if (isLoading) return <div>Loading weather for {cityName}...</div>;
   if (isError) return <div>Error: {JSON.stringify(error)}</div>;
-  if (!data) return <div>No data</div>;
+  if (!data) return <div>No weather data for {cityName} </div>;
 
   return (
     <div>

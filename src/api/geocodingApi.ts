@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { GeocodingResult } from './weatherTypes';
 
-interface GeocodingResponse {
-  results: GeocodingResult[];
-}
+// interface GeocodingResponse {
+//   results: GeocodingResult[];
+// }
 
 export const geocodingApi = createApi({
   reducerPath: 'geocodingApi',
@@ -11,18 +11,18 @@ export const geocodingApi = createApi({
     baseUrl: import.meta.env.VITE_GEOCODING_API_URL,
   }),
   endpoints: (builder) => ({
-    getCoordinatesByCityName: builder.query<GeocodingResult[], string>({
+    getCoordinatesByCityName: builder.query<GeocodingResult, string>({
       query: (cityName) => ({
-        url: '/json',
+        url: '/',
         params: {
           q: cityName,
           key: import.meta.env.VITE_GEOCODING_API_KEY,
           limit: 5,
           no_annotations: 1,
-          language: 'en',
+          // language: 'en',
         },
       }),
-      transformResponse: (response: GeocodingResponse) => response.results,
+      // transformResponse: (response: GeocodingResponse) => response.results,
       // Обработка ошибок
     }),
   }),
