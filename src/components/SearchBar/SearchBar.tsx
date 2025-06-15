@@ -1,4 +1,4 @@
-import { useGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
+import { useLazyGetCoordinatesByCityNameQuery } from '@/api/geocodingApi';
 import React, { useEffect, useState } from 'react';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { SerializedError } from '@reduxjs/toolkit';
@@ -16,18 +16,18 @@ interface SearchBarProps {
 const SearchBar = ({ onCitySelect }: SearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const { data, refetch, isFetching, error } = useGetCoordinatesByCityNameQuery(
-    searchTerm,
-    { skip: true }
-  );
+  // const { data, refetch, isFetching, error } = useGetCoordinatesByCityNameQuery(
+  //   searchTerm,
+  //   { skip: true }
+  // );
 
-  // const [refetch, { isFetching, error }] =
-  //   useLazyGetCoordinatesByCityNameQuery();
+  const [refetch, { data, isFetching, error }] =
+    useLazyGetCoordinatesByCityNameQuery();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      refetch();
+      refetch(searchTerm);
     }
   };
 
