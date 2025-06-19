@@ -1,6 +1,6 @@
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import './App.css';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -12,10 +12,13 @@ function App() {
   } | null>(null);
   const [cityName, setCityName] = useState('');
 
-  const handleCitySelect = (lat: number, lon: number, name: string) => {
-    setSelectedCoords({ lat, lon });
-    setCityName(name);
-  };
+  const handleCitySelect = useCallback(
+    (lat: number, lon: number, name: string) => {
+      setSelectedCoords({ lat, lon });
+      setCityName(name);
+    },
+    []
+  );
   return (
     <>
       <h1>Weather App</h1>
