@@ -39,6 +39,7 @@ const SearchBar = ({ onCitySelect }: SearchBarProps) => {
       const cityName =
         firstResult.components.city ||
         firstResult.components.towm ||
+        firstResult.formatted ||
         searchTerm;
       onCitySelect(lat, lon, cityName);
     }

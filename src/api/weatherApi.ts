@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { CurrentWeather } from './weatherTypes';
 
-interface WeatherResponse {
-  results: CurrentWeather[];
-}
+// interface WeatherResponse {
+//   results: CurrentWeather[];
+// }
 
 export const weatherApi = createApi({
   reducerPath: 'weatherApi',
@@ -12,7 +12,7 @@ export const weatherApi = createApi({
   }),
   endpoints: (builder) => ({
     getCurrentWeather: builder.query<
-      WeatherResponse,
+      CurrentWeather,
       { lat: number; lon: number }
     >({
       query: ({ lat, lon }) => ({
