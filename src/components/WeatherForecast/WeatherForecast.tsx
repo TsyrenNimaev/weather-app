@@ -3,11 +3,14 @@ import { format, fromUnixTime } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import styles from './WeatherForecast.module.scss';
+import type { WeatherData } from '@/api/weatherTypes';
 
 interface WeatherForecastProps {
   lat: number;
   lon: number;
 }
+
+type DailyForecast = Record<string, WeatherData[]>;
 
 const WeatherForecast = ({ lat, lon }: WeatherForecastProps) => {
   const { data, isLoading, isError } = useGetForecastQuery({ lat, lon });
@@ -17,14 +20,15 @@ const WeatherForecast = ({ lat, lon }: WeatherForecastProps) => {
   if (!data) return null;
 
   //Групируем прогноз по дням
-  const dailyForecast = data.list.reduce((acc: any, item: any) => {
-    const date = format(fromUnixTime(item.dt), 'yyyy-MM-dd');
-    if (!acc[date]) {
-      acc[date] = [];
-    }
-    acc[date].push(item);
-    return acc;
-  }, {});
+  const dailyForecast = data.list.reduce(
+    (acc: DailyForecast, item: WeatherData) => {
+      const date = format(fromUnixTime(item.dt), 'yyyy-MM-dd');
+      acc[date] = acc[date] || [];
+      acc[date].push(item);
+      return acc;
+    },
+    {}
+  );
 
   return (
     <div className={styles.forecastContainer}>
@@ -34,12 +38,8 @@ const WeatherForecast = ({ lat, lon }: WeatherForecastProps) => {
           .slice(0, 5)
           .map((date) => {
             const dayData = dailyForecast[date];
-            const minTemp = Math.min(
-              ...dayData.map((d: any) => d.main.temp_min)
-            );
-            const maxTemp = Math.max(
-              ...dayData.map((d: any) => d.main.temp_max)
-            );
+            const minTemp = Math.min(...dayData.map((d) => d.main.temp_min));
+            const maxTemp = Math.max(...dayData.map((d) => d.main.temp_max));
             const dayName = format(new Date(date), 'EEEE', { locale: ru });
 
             return (
