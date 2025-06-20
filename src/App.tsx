@@ -20,12 +20,12 @@ function App() {
     []
   );
   return (
-    <>
+    <div className='app-container'>
       <h1>Weather App</h1>
       <SearchBar onCitySelect={handleCitySelect} />
       {/*передаем координаты в CurrentWeather только если они есть*/}
       {selectedCoords ? (
-        <div>
+        <div className='weather-container'>
           <CurrentWeather
             lat={selectedCoords.lat}
             lon={selectedCoords.lon}
@@ -34,9 +34,9 @@ function App() {
           <WeatherForecast lat={selectedCoords.lat} lon={selectedCoords.lon} />
         </div>
       ) : (
-        <p>Please search for a city</p>
+        <p className='placeholder-text'>Please search for a city</p>
       )}
-    </>
+    </div>
   );
 }
 
