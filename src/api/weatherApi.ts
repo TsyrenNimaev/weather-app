@@ -25,8 +25,18 @@ export const weatherApi = createApi({
         },
       }),
     }),
-    //добавить forecast endpoint
+    getForecast: builder.query<ForecastResponse, { lat: number; lon: number }>({
+      query: ({ lat, lon }) => ({
+        url: 'forecast',
+        params: {
+          lat,
+          lon,
+          appid: import.meta.env.VITE_OPENWEATHER_API_KEY,
+          units: 'metric',
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetCurrentWeatherQuery } = weatherApi;
+export const { useGetCurrentWeatherQuery, useGetForecastQuery } = weatherApi;
