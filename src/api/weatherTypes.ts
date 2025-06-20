@@ -62,3 +62,19 @@ export interface GeocodingResult {
     message: string;
   };
 }
+
+export interface ForecastResponse {
+  list: Array<{
+    dt: number;
+    main: {
+      temp: number;
+      feels_like: number;
+    };
+    weather: Array<{
+      id: number;
+      main: string;
+      description: string;
+      icon: string;
+    }>;
+  }>;
+}
