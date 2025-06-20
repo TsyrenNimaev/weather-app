@@ -44,7 +44,9 @@ const WeatherForecast = ({ lat, lon }: WeatherForecastProps) => {
 
             return (
               <div key={date} className={styles.forecastDay}>
-                <div className={styles.dayName}>{dayName}</div>
+                <div className={styles.dayName}>
+                  {dayName.charAt(0).toUpperCase() + dayName.slice(1)}
+                </div>
                 <img
                   src={`https://openweathermap.org/img/wn/${dayData[0].weather[0].icon}.png`}
                   alt={dayData[0].weather[0].description}
