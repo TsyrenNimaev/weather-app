@@ -1,9 +1,9 @@
-// import reactLogo from './assets/react.svg';
-// import viteLogo from '/vite.svg';
 import { useCallback, useState } from 'react';
-import './App.css';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import SearchBar from './components/SearchBar/SearchBar';
+
+import './App.css';
+import WeatherForecast from './components/WeatherForecast/WeatherForecast';
 
 function App() {
   const [selectedCoords, setSelectedCoords] = useState<{
@@ -25,11 +25,14 @@ function App() {
       <SearchBar onCitySelect={handleCitySelect} />
       {/*передаем координаты в CurrentWeather только если они есть*/}
       {selectedCoords ? (
-        <CurrentWeather
-          lat={selectedCoords.lat}
-          lon={selectedCoords.lon}
-          cityName={cityName}
-        />
+        <div>
+          <CurrentWeather
+            lat={selectedCoords.lat}
+            lon={selectedCoords.lon}
+            cityName={cityName}
+          />
+          <WeatherForecast lat={selectedCoords.lat} lon={selectedCoords.lon} />
+        </div>
       ) : (
         <p>Please search for a city</p>
       )}
